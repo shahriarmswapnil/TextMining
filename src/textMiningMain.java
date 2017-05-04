@@ -23,38 +23,39 @@ public class textMiningMain {
 
 		List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true);
 		textMining test;
-		FileWriter writer = new FileWriter("C:/Users/s4494660/Desktop/TXT/results.txt", true);
+		//FileWriter writer = new FileWriter("C:/Users/s4494660/Desktop/TXT/results.txt", true);
 		for (File file : files) 
 		{
 			test = new textMining(file);
 
 			String fileName = test.fileName();
-			String defendantName = test.defendantName();
-			String position = test.positionCheck();
 			String companyName = test.companyName();
-			String caseType = test.caseType();
-			String chargeType = test.orderCheck();
-			String resolutionType = test.resolutionCheck();
-			String date = test.dateCheck();
-
+//			String defendantName = test.defendantName();
+//			String position = test.positionCheck();
+//			String caseType = test.caseType();
+//			String chargeType = test.orderCheck();
+//			String resolutionType = test.resolutionCheck();
+//			String date = test.dateCheck();
+//
 			System.out.println("File Name: " + fileName);
-			System.out.println("Defendant Name: " + defendantName);
-			System.out.println("Position: " + position);
-			System.out.println("Company Name: " + companyName);
-			System.out.println("Case Type: " + caseType);
-			System.out.println("Charge Type: " + chargeType);
-			System.out.println("Resolution Type: " + resolutionType);
-			System.out.println("Date: " + date);
+//			System.out.println("Company Name: " + companyName);
+
+//			System.out.println("Defendant Name: " + defendantName);
+//			System.out.println("Position: " + position);
+//			System.out.println("Case Type: " + caseType);
+//			System.out.println("Charge Type: " + chargeType);
+//			System.out.println("Resolution Type: " + resolutionType);
+//			System.out.println("Date: " + date);
 
 			System.out.println();
 
-			writer.append(fileName + ","+defendantName + ","+position + ","+companyName + ","+caseType + ","+chargeType + ","+resolutionType + ","+date);
-			writer.append("\n");
+			//writer.append(fileName + ","+defendantName + ","+position + ","+companyName + ","+caseType + ","+chargeType + ","+resolutionType + ","+date);
+			//writer.append("\n");
 
 		}
 		
-	    writer.flush();
-	    writer.close();
+	   // writer.flush();
+	    //writer.close();
 	
 
 	}

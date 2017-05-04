@@ -61,18 +61,18 @@ public class textMining
 		{
 			if(tokens.nextToken().contains("DEFENDANT"))
 			{
-				
-		
+
+
 				while(tokens.nextToken()=="")
 					tokens.nextToken();
-				
+
 				StringTokenizer test =new StringTokenizer(tokens.nextToken(),",");
 				defendantName=test.nextToken();
 				if(defendantName.length()>0)
 				{
 					try{
-					defendantName=defendantName.substring(4, defendantName.length());
-					break;
+						defendantName=defendantName.substring(4, defendantName.length());
+						break;
 					}
 					catch(Exception e)
 					{
@@ -94,35 +94,82 @@ public class textMining
 		return defendantName;
 
 	}
-	
+
+
+
 	public String companyName()
 	{
 		String companyName="";
 		StringTokenizer tokens = new StringTokenizer(everything,"\n");
-		String tempToken="";
+		String company="";
+		
+		String rep="";
 
 		while(tokens.hasMoreTokens())
 		{
-			tempToken=tokens.nextToken();
-			tempToken=tempToken.toLowerCase();
-			if(tempToken.contains("corp.")||tempToken.contains("inc.")||tempToken.contains("ltd.")||tempToken.contains("co.")||tempToken.contains("corporation")||tempToken.contains("limited"))
+			try
 			{
-				//System.out.println("FOUND A CORPORATION");
-				companyName=tempToken;
-			
-				
+				companyName=tokens.nextToken();
+
+				//companyName=companyName.toLowerCase();
+				//if(tempToken.contains("corp.")||tempToken.contains("inc.")||tempToken.contains("ltd.")||tempToken.contains("co.")||tempToken.contains("corporation")||tempToken.contains("limited"))
+				if (companyName.contains("against"))
+				{
+					companyName +=tokens.nextToken();
+					companyName +=tokens.nextToken();
+					System.out.println(companyName);
+					String [] words=companyName.split("against");
+					//company=words[0];
+					System.out.println(words[1]);
+					company=companyName;
+					break;
+
+
+				}
+			}
+			catch(Exception e)
+			{
+
 			}
 
 
 		}
+
+		
+
 		//System.out.println(companyName);
-		return companyName;
+		return company;
 
 	}
-	
+
+	//	public String companyName()
+	//	{
+	//		String companyName="";
+	//		StringTokenizer tokens = new StringTokenizer(everything,"\n");
+	//		String tempToken="";
+	//
+	//		while(tokens.hasMoreTokens())
+	//		{
+	//			tempToken=tokens.nextToken();
+	//			tempToken=tempToken.toLowerCase();
+	//			if(tempToken.contains("corp.")||tempToken.contains("inc.")||tempToken.contains("ltd.")||tempToken.contains("co.")||tempToken.contains("corporation")||tempToken.contains("limited"))
+	//			{
+	//				//System.out.println("FOUND A CORPORATION");
+	//				companyName=tempToken;
+	//			
+	//				
+	//			}
+	//
+	//
+	//		}
+	//		//System.out.println(companyName);
+	//		return companyName;
+	//
+	//	}
+
 	public String caseType()
 	{
-		
+
 		try 
 		{
 			String fileLocation=file.getCanonicalPath();
@@ -138,19 +185,19 @@ public class textMining
 			{
 				return "Not Defined";
 			}
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "Not Defined";
 		}
-		
-	
+
+
 	}
 
-	
-	
-	
+
+
+
 
 	public String dateCheck()
 	{
@@ -164,14 +211,14 @@ public class textMining
 			if (str.contains("Dated:")) 
 			{
 				date= str.substring(7,str.length());
-				
+
 			}
 		}
-		
+
 		return date;
 	}
-	
-	
+
+
 	public String orderCheck()
 	{
 		String test="";
@@ -192,19 +239,19 @@ public class textMining
 				}
 
 				line = br.readLine();
-				
+
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return test;
 
 	}
-	
-	
+
+
 	public String resolutionCheck()
 	{
 		String text="";
@@ -212,7 +259,7 @@ public class textMining
 		{
 			//StringBuilder sb = new StringBuilder();
 			String line = br.readLine();
-			
+
 
 			while (line != null) 
 			{
@@ -226,21 +273,21 @@ public class textMining
 				}
 
 				line = br.readLine();
-				
-				
+
+
 			}
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return text;
 
 	}
-	
+
 	public String positionCheck()
 	{
 		StringTokenizer tokens = new StringTokenizer(everything,"\n");
@@ -281,9 +328,9 @@ public class textMining
 				position="unknown";
 			}
 		}
-		
+
 		return position;
-		
+
 	}
 
 }
